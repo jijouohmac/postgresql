@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script is only tested on CentOS 6.5 and Ubuntu 12.04 LTS with Percona XtraDB Cluster 5.6.
-# You can customize variables such as MOUNTPOINT, RAIDCHUNKSIZE and so on to your needs.
+# You can customize variables such as MOUNTPOINT, RAIDCHUNKSIZE and so on to your needs..
 # You can also customize it to work with other Linux flavours and versions.
 # If you customize it, copy it to either Azure blob storage or Github so that Azure
 # custom script Linux VM extension can access it, and specify its location in the 
@@ -186,7 +186,7 @@ create_mycnf() {
 }
 
 install_mysql_ubuntu() {
-    dpkg -s mysql-5.6
+    dpkg -s mysql-5.5
     if [ ${?} -eq 0 ];
     then
         return
@@ -194,9 +194,9 @@ install_mysql_ubuntu() {
     echo "installing mysql"
     apt-get update
     export DEBIAN_FRONTEND=noninteractive
-	apt-get install -y mysql-server-5.6
+	apt-get install -y mysql-server-5.5
 	chown -R mysql:mysql "${MOUNTPOINT}/mysql/mysql"
-	apt-get install -y mysql-server-5.6
+	apt-get install -y mysql-server-5.5
 	wget http://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python_2.1.3-1ubuntu14.04_all.deb
 	dpkg -i mysql-connector-python_2.1.3-1ubuntu14.04_all.deb
 	wget http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-utilities_1.6.4-1ubuntu14.04_all.deb
