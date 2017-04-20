@@ -14,6 +14,7 @@ RPLPWD=${4}
 ROOTPWD=${5}
 PROBEPWD=${6}
 MASTERIP=${7}
+VERSION=5.5
 
 MOUNTPOINT="/datadrive"
 RAIDCHUNKSIZE=512
@@ -23,18 +24,6 @@ RAIDPARTITION="/dev/md127p1"
 # An set of disks to ignore from partitioning and formatting
 BLACKLIST="/dev/sda|/dev/sdb"
 
-while test -n "$1"; do                                                                                                                                                   
-   case "$1" in                                                                                                                                                          
-        --version)
-            VERSION=$2
-            shift
-            ;;
-       *)
-            exit
-            ;;
-   esac
-    shift
-done
 check_os() {
     grep ubuntu /proc/version > /dev/null 2>&1
     isubuntu=${?}
