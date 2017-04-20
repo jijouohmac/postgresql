@@ -14,7 +14,6 @@ RPLPWD=${4}
 ROOTPWD=${5}
 PROBEPWD=${6}
 MASTERIP=${7}
-VERSION=5.5
 
 MOUNTPOINT="/datadrive"
 RAIDCHUNKSIZE=512
@@ -187,7 +186,7 @@ create_mycnf() {
 }
 
 install_mysql_ubuntu() {
-    dpkg -s mysql-$VERSION
+    dpkg -s mysql-5.5
     if [ ${?} -eq 0 ];
     then
         return
@@ -195,9 +194,9 @@ install_mysql_ubuntu() {
     echo "installing mysql"
     apt-get update
     export DEBIAN_FRONTEND=noninteractive
-       	apt-get install -y mysql-server-$VERSION
+	apt-get install -y mysql-server-5.5
 	chown -R mysql:mysql "${MOUNTPOINT}/mysql/mysql"
-	apt-get install -y mysql-server-$VERSION
+	apt-get install -y mysql-server-5.5
 	wget http://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python_2.1.3-1ubuntu14.04_all.deb
 	dpkg -i mysql-connector-python_2.1.3-1ubuntu14.04_all.deb
 	wget http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-utilities_1.6.4-1ubuntu14.04_all.deb
@@ -206,18 +205,18 @@ install_mysql_ubuntu() {
 }
 
 install_mysql_centos() {
-    rpm -qa |grep MySQL-server-$VERSION.26-1.el6.x86_64
+    rpm -qa |grep MySQL-server-5.6.26-1.el6.x86_64
     if [ ${?} -eq 0 ];
     then
         return
     fi
     echo "installing mysql"
-    wget https://dev.mysql.com/get/Downloads/MySQL-$VERSION/MySQL-$VERSION.26-1.el6.x86_64.rpm-bundle.tar
-    tar -xvf MySQL-$VERSION.26-1.el6.x86_64.rpm-bundle.tar
+    wget https://dev.mysql.com/get/Downloads/MySQL-5.6/MySQL-5.6.26-1.el6.x86_64.rpm-bundle.tar
+    tar -xvf MySQL-5.6.26-1.el6.x86_64.rpm-bundle.tar
 	curlib=$(rpm -qa |grep mysql-libs-)
     rpm -e --nodeps $curlib
-    rpm -ivh MySQL-server-$VERSION.26-1.el6.x86_64.rpm
-    rpm -ivh MySQL-client-$VERSION.26-1.el6.x86_64.rpm
+    rpm -ivh MySQL-server-5.6.26-1.el6.x86_64.rpm
+    rpm -ivh MySQL-client-5.6.26-1.el6.x86_64.rpm
 	wget http://dev.mysql.com/get/Downloads/Connector-Python/mysql-connector-python-2.0.4-1.el6.noarch.rpm
 	rpm -ivh mysql-connector-python-2.0.4-1.el6.noarch.rpm
 	wget http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-utilities-1.5.5-1.el6.noarch.rpm
