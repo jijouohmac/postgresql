@@ -191,7 +191,7 @@
         },
         "customScriptCommandToExecute": {
             "type": "string",
-            "defaultValue": "bash azuremysqlnew.sh",
+            "defaultValue": "bash azuremysql.sh",
             "metadata": {
                 "description": "bash script command line"
             }
@@ -221,7 +221,7 @@
     "sshIPConfig": "[concat(variables('lbID'),'/frontendIPConfigurations/',variables('sshIPConfigName'))]",
     "nicName": "[concat(parameters('dnsName'), '-nic')]",
     "availabilitySetName": "[concat(parameters('dnsName'), '-set')]",
-    "customScriptFilePath": "[concat(parameters('artifactsPath'), '/azuremysqlnew.sh')]",
+    "customScriptFilePath": "[concat(parameters('artifactsPath'), '/azuremysql.sh')]",
     "mysqlConfigFilePath": "[concat(parameters('artifactsPath'), '/my.cnf.template')]",
     "singleQuote": "",
 
